@@ -1,8 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials"
 import { prisma } from "../prisma"
-import { error } from "console"
-import { Session } from "inspector/promises"
 import { NextAuthOptions } from "next-auth"
+
 
 
 
@@ -11,8 +10,8 @@ export const authOptions:NextAuthOptions = {
         CredentialsProvider({
             name:"Credentials",
             credentials: {
-                userName: { label: "Username", type: "text", placeholder: "jsmith" },
-                password: { label: "Password", type: "password" }
+                userName: { label: "Username", type: "text", placeholder: "username" },
+                password: { label: "Password", type: "password" , placeholder:"password"}
               },
             async authorize(credentials){
                 if(!credentials?.password || !credentials?.userName){
@@ -39,6 +38,7 @@ export const authOptions:NextAuthOptions = {
             }
         }),
     ],
+    secret:process.env.NEXTAUTH_SECRET,
     session:{
         strategy:"jwt"
     },
@@ -47,8 +47,5 @@ export const authOptions:NextAuthOptions = {
             if(token) token.user = user
             return token
         }
-    },
-    pages:{
-        signIn:"/login"
     }
 }

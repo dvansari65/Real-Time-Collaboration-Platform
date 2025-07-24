@@ -1,9 +1,11 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+ function Home() {
+
   return (
-   <div>
-    hey there!
+   <div className="w-full h-screen flex justify-center items-center">
+    
    </div>
   );
 }
+export default Home

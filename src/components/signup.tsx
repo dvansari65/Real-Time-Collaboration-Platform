@@ -30,7 +30,7 @@ export function Signup() {
       if (data.success) {
         setIsLoading(false)
         toast.success(data.message || "signed up successfully!");
-        router.push("/login");
+        router.push("/");
       } else {
         toast.error(data.message || "signed up failed!");
         setIsError(true)
@@ -40,7 +40,7 @@ export function Signup() {
         setIsLoading(false)
         console.log("faild signup!", error);
         setIsError(true)
-        toast.error(error.data.message || "failed to signup!");
+        toast.error(error?.data?.message || "failed to signup!");
     }finally{
         setIsLoading(false)
     }
